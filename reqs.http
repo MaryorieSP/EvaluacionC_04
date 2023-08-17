@@ -1,24 +1,17 @@
-@server = https://bug-free-space-funicular-vx777pg54xj365r-8080.app.github.dev
-@instumentos = {{server}}/api/instrumentos
-@musicos = {{server}}/api/musicos
+@server = https://super-duper-tribble-rjvvv7rxqrvc5r5j-8080.app.github.dev
+@genero = {{server}}/api/generos
+@autores = {{server}}/api/autores
+@libros = {{server}}/api/libros
 ###
-GET {{instumentos}}
+GET {{genero}}
 ###
-POST {{instumentos}}
-Content-Type: application/json
 
-{
-    "nombre": "Quena",
-    "categoria": "Viento",
-    "descripcion": "Tubo de madera con orificios"
-}
+GET {{autores}}
 ###
-POST {{musicos}}
-Content-Type: application/json
 
-{"nombre": "Otro Músico"}
-
+GET {{libros}}
 ###
+
 GET {{server}}/api/integrantes/1/instrumento
 ###
-GET {{server}}/api/bandas/1/formacion
+GET {{server}}/api/generos/7/union

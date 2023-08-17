@@ -29,4 +29,11 @@ public class HomeController {
 		return queryResult;
 	}
 
+	@GetMapping(path="/api/generos/{id}/union")
+	public @ResponseBody List<Map<String, Object>> union(@PathVariable Integer id){
+		String sql = "SELECT liauto.id as ID, libro.titulo as LIBRO, autor.nombre as AUTOR FROM liauto JOIN libro ON liauto.id_libro = libro.id JOIN autor ON liauto.id_autor = autor.id WHERE id_genero = ?";
+		List<Map<String, Object>> queryResult = jdbcTemplate.queryForList(sql, id);
+		return queryResult;
+	}
+
 }

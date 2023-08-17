@@ -7,58 +7,59 @@ import org.springframework.stereotype.Component;
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
-	private final InstrumentoRepository repositoryI;
-	private final MusicoRepository repositoryM;
-	private final BandaRepository repositoryB;
-	private final IntegranteRepository repositoryN;
+	//EC4
+	private final AutorRepository repositoryA;
+	private final LibroRepository repositoryL;
+	private final GeneroRepository repositoryG;
+	private final LiautoRepository repositoryLA;
 
 	@Autowired
-	public DatabaseLoader(
-		InstrumentoRepository repositoryI,
-		 MusicoRepository repositoryM,
-		 BandaRepository repositoryB,
-		 IntegranteRepository repositoryN) {
-		this.repositoryI = repositoryI;
-		this.repositoryM = repositoryM;
-		this.repositoryB = repositoryB;
-		this.repositoryN = repositoryN;
+	public DatabaseLoader(AutorRepository repositoryA,
+		 LibroRepository repositoryL,
+		  GeneroRepository repositoryG,
+		  LiautoRepository repositoryLA) {
+		
+		this.repositoryA = repositoryA;
+		this.repositoryL = repositoryL;
+		this.repositoryG = repositoryG;
+		this.repositoryLA = repositoryLA;
 	}
+
+
 
 	@Override
 	public void run(String... strings) throws Exception {
-		
-		Instrumento iVoz = new Instrumento("Voz", "Viento", "Voz humana");
-		Instrumento iGuitarrElectrica = new Instrumento("Guitarra Eléctrica", "Eléctrica", "de madera, SIN caja de resonancia, 6 cuerdas templadas metálicas, pastillas y amplificador");
-		Instrumento iBajo = new Instrumento("Bajo", "Eléctrico", "Ritmos");
-		this.repositoryI.save(new Instrumento("Guitarra Acústica", "Cuerda", "de madera, con caja de resonancia, 6 cuerdas templadas"));
-		this.repositoryI.save(new Instrumento("Ukelele","Cuerda","de madera, con caja de resonancia pequeña, 4 cuerdas templadas"));
-		this.repositoryI.save(new Instrumento("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));
-		this.repositoryI.save(iVoz);
-		this.repositoryI.save(iGuitarrElectrica);
-		this.repositoryI.save(iBajo);
-		this.repositoryI.save(new Instrumento("Batería", "Percusión", "Percisiones"));
 
-		Musico mFreddie = new Musico("Freddie");
-		Musico mBrian = new Musico("Brian");
-		Musico mRogerWaters = new Musico("Roger Waters");
-		this.repositoryM.save(mFreddie);
-		this.repositoryM.save(mBrian);
-		this.repositoryM.save(mRogerWaters);
-		this.repositoryM.save(new Musico("Roger"));
+		//AUTORES
+		Autor auto1 = new Autor("Horacio", "Colombia");
+		this.repositoryA.save(auto1);
+		this.repositoryA.save(new Autor("Ravi", "India"));
+		this.repositoryA.save(new Autor("Isabel", "España"));
+		this.repositoryA.save(new Autor("Emily", "Estados Unidos"));
+		this.repositoryA.save(new Autor("Luis", "México"));
+		this.repositoryA.save(new Autor("Sofia", "Argentina"));
 
-		Banda bQueen = new Banda("Queen");
-		Banda bPinkFloyd = new Banda("Pink Floyd");
-		this.repositoryB.save(bQueen);
-		this.repositoryB.save(bPinkFloyd);
+		//LIBROS
+		Libro libro1 = new Libro("Sombras en la Selva", "2010");
+		this.repositoryL.save(libro1);
+		this.repositoryL.save(new Libro("El Jardín de las Mariposas","2015"));
+		this.repositoryL.save(new Libro("Caminando entre Especias","2018"));
+		this.repositoryL.save(new Libro("Cielo Nocturno en Manhattan","2022"));
+		this.repositoryL.save(new Libro("El Eco de la Montaña","2007"));
+		this.repositoryL.save(new Libro("Bajo el Sol del Pampero","2013"));
 
-		Integrante intFreddie = new Integrante(bQueen, mFreddie, iVoz);
-		this.repositoryN.save(intFreddie);
-		Integrante intBrian = new Integrante(bQueen, mBrian, iGuitarrElectrica);
-		this.repositoryN.save(intBrian);
-		Integrante intRogerWaters = new Integrante(bPinkFloyd, mRogerWaters, iBajo);
-		this.repositoryN.save(intRogerWaters);
+		//GENERO
+		Genero genero1 = new Genero("Novela de aventuras");
+		this.repositoryG.save(genero1);
+		this.repositoryG.save(new Genero("Drama psicológico"));
+		this.repositoryG.save(new Genero(" Realismo mágico"));
+		this.repositoryG.save(new Genero("Romance contemporáneo"));
+		this.repositoryG.save(new Genero("Novela histórica"));
+		this.repositoryG.save(new Genero("Literatura regionalista"));
 
+		//Vista desde Genero con Libros y Autores
+		this.repositoryLA.save(new Liauto(libro1, auto1, genero1));
 
-	}
+	}	
 	
 }
