@@ -14,4 +14,4 @@ GET {{libros}}
 
 GET {{server}}/api/integrantes/1/instrumento
 ###
-GET {{server}}/api/generos/7/union
+GET {{server}}/api/generos/1/union
